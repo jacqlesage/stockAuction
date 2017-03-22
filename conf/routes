@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+
+# Map static resources from the /public folder to the /assets URL path
+# this is picking up my css file - main.css
+GET     /public/*file               controllers.Assets.at(path = "/public",file)
+
+#A test from the book
+GET     /hello                          controllers.HomeController.hello(name:String)
+
+#show the blank user signup form - will need to link this into the main index page for sign up
+GET /showBlank                     controllers.CustomerController.showBlank
+
+#add the new customer to the database
+POST /showBlank                     controllers.CustomerController.showBlank()
+

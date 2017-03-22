@@ -1,0 +1,23 @@
+body {
+
+     color: blue;
+}
+
+#navBarHeader {
+
+margin-top: 100px;
+
+}
+
+.container > #mainHeading {
+
+         font-size: 300px;
+}
+
+#test{
+     background-color: chocolate;
+}
+
+.input-group-addon{
+    background-color: chocolate;
+}

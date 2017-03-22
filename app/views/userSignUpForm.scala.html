@@ -1,0 +1,44 @@
+@(customerForm: Form[model.Customer])
+@import model.Customer
+@import views.html.helper
+@import b4.horizontal.fieldConstructor
+@implicitFieldConstructor = @{ b4.horizontal.fieldConstructor("col-md-2", "col-md-10") }
+
+_
+
+
+
+
+
+
+
+
+    @b4.form(routes.CustomerController.showBlank() ){
+
+    <div class="container">
+        <div class="row">
+
+
+
+
+
+    @b4.email( customerForm("email"), '_label -> "Email",  '_showIconValid -> false, 'placeholder -> "example@mail.com" )
+
+    @b4.password( customerForm("password"), '_label -> "Password", 'placeholder -> "Password" )
+    @b4.checkbox( customerForm("remember"), '_text -> "Remember me", 'value -> true )
+    @b4.inputWrapped( "email", customerForm("email"), '_label -> "Email", 'placeholder -> "example@mail.com" ) { input =>
+        <div class="input-group" style="background-color: #9a9a9a">
+            <span class="input-group-addon">@@</span>
+            @input
+
+
+
+    </div>
+    }
+    @b4.submit('class -> "btn btn-default"){ Sign in }
+
+
+    }
+
+</div>
+</div>
