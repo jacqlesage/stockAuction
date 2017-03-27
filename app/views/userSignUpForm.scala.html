@@ -23,10 +23,18 @@ _
 
 
     @b4.email( customerForm("email"), '_label -> "Email",  '_showIconValid -> false, 'placeholder -> "example@mail.com" )
-
+    @b4.text(customerForm("firstName"), '_label -> "firstName",  '_showIconValid -> false, 'placeholder -> "Enter your first name here" )
+    @b4.text(customerForm("lastName"), '_label -> "lastName",  '_showIconValid -> false, 'placeholder -> "Enter your last name here" )
     @b4.password( customerForm("password"), '_label -> "Password", 'placeholder -> "Password" )
     @b4.checkbox( customerForm("remember"), '_text -> "Remember me", 'value -> true )
-    @b4.inputWrapped( "email", customerForm("email"), '_label -> "Email", 'placeholder -> "example@mail.com" ) { input =>
+            @b4.tel(customerForm("phoneNumber"), '_label -> "phoneNumber",  '_showIconValid -> false, 'placeholder -> "i.e +64 2" )
+            @b4.text(customerForm("address1"), '_label -> "address1",  '_showIconValid -> false, 'placeholder -> "i.e apt c/203")
+            @b4.text(customerForm("address2"), '_label -> "address2",  '_showIconValid -> false, 'placeholder -> "i.e 24 forth Street")
+            @b4.text(customerForm("suburb"), '_label -> "suburb",  '_showIconValid -> false, 'placeholder -> "i.e Pinehill")
+            @b4.text(customerForm("city"), '_label -> "city",  '_showIconValid -> false, 'placeholder -> "i.e Dunedin")
+            @b4.number(customerForm("postcode"), '_label -> "postcode",  '_showIconValid -> false, 'placeholder -> "i.e 9010")
+            @b4.text(customerForm("country"), '_label -> "country",  '_showIconValid -> false, 'placeholder -> "i.e New Zealand")
+            @b4.inputWrapped( "email", customerForm("email"), '_label -> "Email", 'placeholder -> "example@mail.com" ) { input =>
         <div class="input-group" style="background-color: #9a9a9a">
             <span class="input-group-addon">@@</span>
             @input
