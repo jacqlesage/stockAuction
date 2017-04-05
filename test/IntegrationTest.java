@@ -11,17 +11,18 @@ import play.db.Database;
 import static play.test.Helpers.*;
 import static org.junit.Assert.*;
 
-//import play.db.Database;
+//import play.db.DatabaseModel;
 import play.db.*;
 //import play.db.evolutions.*;
 import java.sql.*;
+
 
 import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class IntegrationTest {
 
 
-//    private Database database;
+//    private DatabaseModel database;
 
     Database database = Databases.createFrom(
             "playDollar",
@@ -32,7 +33,7 @@ public class IntegrationTest {
 
 
 //    @Inject
-//     public IntegrationTest(@NamedDatabase("dollarDatabase") Database db) {
+//     public IntegrationTest(@NamedDatabase("dollarDatabase") DatabaseModel db) {
 //        this.database = db;
 //
 //    }
@@ -49,20 +50,6 @@ public class IntegrationTest {
         });
     }
 
-//    @Test
-//    public void testDatabase() throws Exception{
-//
-//
-//        if (!database.getConnection().isClosed()){
-//            assertTrue("database is connected",!database.getConnection().isClosed());
-//            System.out.println(database.getConnection() + " Hello private DB");
-//
-//        }else{
-//
-//            assertFalse("database is closed",database.getConnection().isClosed());
-//        }
-//
-//    }
 
     @Test
     public void testDatabaseTable() throws Exception {
@@ -82,13 +69,13 @@ public class IntegrationTest {
     public void setupDatabase() {
 
 
-//        Database database = Databases.createFrom(
-//                "playDollar",
-//                "com.mysql.jdbc.Driver",
-//                "jdbc:mysql://localhost:3306/playDollar?user=root&password=password"
-//
-//
-//        );
+        Database database = Databases.createFrom(
+                "playDollar",
+                "com.mysql.jdbc.Driver",
+               "jdbc:mysql://localhost:3306/playDollar?user=root&password=password"
+
+
+);
         Evolutions.applyEvolutions(database, Evolutions.forDefault(new Evolution(
                 1,
                 "create table test (id bigint not null, name varchar(255));",
@@ -105,7 +92,7 @@ public class IntegrationTest {
         @Test
         public void testDatabase () throws Exception {
             Connection connection = database.getConnection();
-            connection.prepareStatement("insert into test values (125)").execute();
+            connection.prepareStatement("insert into test values (126)").execute();
 
             assertTrue(
                     connection.prepareStatement("select * from test")

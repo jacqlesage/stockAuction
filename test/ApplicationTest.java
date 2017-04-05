@@ -1,22 +1,13 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.JsonNode;
+import model.DatabaseModel;
 import org.junit.*;
 
-import play.mvc.*;
-import play.test.*;
-import play.data.DynamicForm;
-import play.data.validation.ValidationError;
-import play.data.validation.Constraints.RequiredValidator;
-import play.i18n.Lang;
-import play.libs.F;
-import play.libs.F.*;
 import play.twirl.api.Content;
+import play.db.*;
 
-import static play.test.Helpers.*;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import static org.junit.Assert.*;
 
 
@@ -40,6 +31,16 @@ public class ApplicationTest {
         assertEquals("text/html", html.contentType());
         assertTrue(html.body().contains("Your new application is ready."));
     }
+
+    @Test
+    public void testDatabaseModelMyDefaultDb() throws SQLException {
+
+        DatabaseModel dbm = new DatabaseModel();
+
+        assertTrue(!dbm.conn().isClosed());
+
+    }
+
 
 
 }

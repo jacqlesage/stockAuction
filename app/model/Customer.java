@@ -1,9 +1,12 @@
 package model;
-
 //import org.springframework.ui.Model;
+import controllers.JavaApplicationDatabase;
 import play.data.format.*; // date format
 import play.data.validation.*; // constraints
+import play.db.Database;
 import play.libs.Crypto; // crypt AES
+
+import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 import com.avaje.ebean.Model;
@@ -60,8 +63,6 @@ public class Customer extends Model{
 
 
     public static Finder<Long, Customer> find = new Finder<Long,Customer>(Customer.class);
-
-
 
 
 
