@@ -20,7 +20,9 @@ GET     /hello                          controllers.HomeController.hello(name:St
 #show the blank user signup form - will need to link this into the main index page for sign up
 GET /showBlank                     controllers.CustomerController.showBlank
 
-#add the new customer to the database
-POST /showBlank                     controllers.CustomerController.showBlank()
+
 
 GET /showBlank                controllers.CustomerController.addCustomer
+
+#add the new customer to the database
+POST /customer                     controllers.JavaApplicationDatabase.insertUser

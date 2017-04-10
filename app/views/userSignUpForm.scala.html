@@ -13,7 +13,7 @@ _
 
 
 
-    @b4.form(routes.CustomerController.showBlank() ){
+
 
     <div class="container">
         <div class="row">
@@ -21,7 +21,7 @@ _
 
 
 
-    @b4.inline.form(routes.CustomerController.addCustomer) { implicit ifc =>
+    @b4.inline.form(routes.JavaApplicationDatabase.insertUser()) { implicit ifc =>
         @b4.text(customerForm("firstName"), '_label -> "firstName", '_showIconValid -> false, 'placeholder -> "Enter your first name here")
         @b4.text(customerForm("lastName"), '_label -> "lastName", '_showIconValid -> false, 'placeholder -> "Enter your last name here")
         @b4.password(customerForm("password"), '_label -> "Password", 'placeholder -> "Password")
@@ -41,11 +41,12 @@ _
 
             </div>
         }
+        @b4.submit('class -> "btn btn-default"){ Sign in }
     }
-    @b4.submit('class -> "btn btn-default"){ Sign in }
 
 
-    }
+
+
 
 </div>
 </div>

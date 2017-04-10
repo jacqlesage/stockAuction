@@ -46,5 +46,9 @@ public class DatabaseModel {
         connection.close();
     }
 
+    public static void addUserToDataBase(Customer customerObject){
+
+
+    }
 
 }

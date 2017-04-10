@@ -11,20 +11,29 @@ import java.util.Date;
 import java.util.List;
 import com.avaje.ebean.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by james on 2/03/17.
  */
 
+@Entity
+@Table(name = "Customer")
 public class Customer extends Model{
 
+    @Id
+    public int Id;
+
     @Constraints.Required(message="validation.required")
-    @Constraints.Email(message="validation.fname")
+//    @Constraints.Email(message="validation.fname")
     @Constraints.MaxLength(value=100,message="validation.maxLength")
 //    @Column(unique=true, nullable=false, length=100)
     public String firstName;
 
     @Constraints.Required(message="validation.required")
-    @Constraints.Email(message="validation.lname")
+//    @Constraints.Email(message="validation.lname")
     @Constraints.MaxLength(value=100,message="validation.maxLength")
 //    @Column(unique=true, nullable=false, length=100)
     public String lastName;
