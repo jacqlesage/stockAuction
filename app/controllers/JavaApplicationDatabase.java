@@ -30,9 +30,12 @@ public class JavaApplicationDatabase extends Controller {
     }
 
 
-
+    /**
+     * This method handels the making of a new customer.
+     * @return at this stage just returning the customer to the home page.
+     */
     public Result insertUser(){
-        //take the 'userForm' and bind it to the customer model.
+        //take the 'customerForm' and bind it to the customer model.
         Customer customer = formFactory.form(Customer.class).bindFromRequest().get();
         //save the info to the database
         customer.save();
