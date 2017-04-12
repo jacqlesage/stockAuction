@@ -39,7 +39,9 @@ public class JavaApplicationDatabase extends Controller {
         Customer customer = formFactory.form(Customer.class).bindFromRequest().get();
         //save the info to the database
         customer.save();
-        System.out.println(db.toString());
+        //get the password from the form
+        String temp = customer.password;
+        System.err.println(temp);
         //return to index page
         return redirect(routes.HomeController.index());
 
