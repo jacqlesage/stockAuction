@@ -1,6 +1,7 @@
 package controllers;
 
 import model.Customer;
+import model.CustomerLogin;
 import model.DatabaseModel;
 import play.data.Form;
 import play.data.FormFactory;
@@ -40,8 +41,12 @@ public class JavaApplicationDatabase extends Controller {
         //save the info to the database
         customer.save();
         //get the password from the form
-        String temp = customer.password;
-        System.err.println(temp);
+        String password = customer.password;
+        //get the email from the form
+        String email = customer.email;
+        //bind to the customer login
+        CustomerLogin customerLogin = formFactory.form(CustomerLogin.class).bindFromRequest().get();
+        customerLogin.save();
         //return to index page
         return redirect(routes.HomeController.index());
 

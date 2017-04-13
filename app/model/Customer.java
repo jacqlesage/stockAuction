@@ -26,6 +26,7 @@ import javax.validation.constraints.Min;
 public class Customer extends Model{
 
     @Id
+    @OneToOne
     public int Id;
 
     @Constraints.Required(message="validation.required")
@@ -48,6 +49,7 @@ public class Customer extends Model{
     @Constraints.Required(message="validation.required")
     @Constraints.Email(message="validation.email")
     @Constraints.MaxLength(value=100,message="validation.maxLength")
+
     public String email;
 
     //    address details - Better to use an address finder as opposed to regex as the pattern would be consistant
@@ -75,7 +77,7 @@ public class Customer extends Model{
     public String country;
 
     @Transient //Defines this field as being transient (not persisted)
-    ///@JoinColumn(table="cusotmer_login")
+    @JoinColumn(table="cusotmer_login")
     @Constraints.Required(message="validation.required")
     public String password;
 
@@ -87,6 +89,7 @@ public class Customer extends Model{
 
 
     public static Finder<Long, Customer> find = new Finder<Long,Customer>(Customer.class);
+
 
 
 
