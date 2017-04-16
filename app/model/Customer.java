@@ -26,8 +26,7 @@ import javax.validation.constraints.Min;
 public class Customer extends Model{
 
     @Id
-    @OneToOne
-    public int Id;
+    public int id;
 
     @Constraints.Required(message="validation.required")
 //    @Constraints.Email(message="validation.fname")
@@ -87,6 +86,8 @@ public class Customer extends Model{
      @Constraints.Required(message="validation.required")
      public int active;
 
+    @OneToOne(mappedBy = "customer")
+     public CustomerLogin customerLogin;
 
     public static Finder<Long, Customer> find = new Finder<Long,Customer>(Customer.class);
 
