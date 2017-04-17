@@ -43,10 +43,10 @@ public class JavaApplicationDatabase extends Controller {
 
         //bind to the customer login
         CustomerLogin customerLogin = formFactory.form(CustomerLogin.class).bindFromRequest().get();
-        customerLogin.createLogin(customerLogin.email, customerLogin.password);
+        Result temp = customerLogin.createLogin(customerLogin.email, customerLogin.password);
         //customerLogin.save();
         //return to index page
-        return redirect(routes.HomeController.index());
+        return temp;
 
     }
 
