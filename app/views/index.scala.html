@@ -1,4 +1,5 @@
 @(title: String)
+
 <!DOCTYPE html>
 
     <html>
@@ -117,20 +118,21 @@
 
                         <h3>Thanks for joining our community</h3>
 
-                        <form action="#" method="post" id="signUp">
+
+                        <form action="@routes.JavaApplicationDatabase.insertUser" method="post" id="signUp">
                             <fieldset>
                                 <legend>Personal details</legend>
                             <div class="field half first">
                                 <label for="firstName">First name</label>
-                                <input name="fname" id="fname" type="text" placeholder="First Name">
+                                <input name="firstName" id="firstName" type="text" placeholder="First Name">
                             </div>
                             <div class="field half ">
                                 <label for="email">Last Name</label>
-                                <input name="lname" id="lname" type="text" placeholder="Last Name">
+                                <input name="lastName" id="lastName" type="text" placeholder="Last Name">
                             </div>
                             <div class="field half first">
                                 <label for="message">Contact Number</label>
-                                <input name="cNumber" id="cNumber" type="text" placeholder="Your best contact number"></input>
+                                <input name="phoneNumber" id="phoneNumber" type="text" placeholder="Your best contact number"></input>
                             </div>
                             <div class="field half">
                                 <label for="message">Email - This will also be your user name</label>
@@ -142,7 +144,7 @@
                                     <input name="address1" id="address1" type="text" placeholder="Place your address in here">
                                 </div>
                                 <div class="field half">
-                                    <label for="email">Address line 2</label>
+                                    <label for="address2">Address line 2</label>
                                     <input name="address2" id="address2" type="text" placeholder="Your apartment number for example may go here">
                                 </div>
                                 <div class="field half first ">
@@ -178,7 +180,7 @@
                                 </div>
                             </fieldset>
                             <ul class="actions">
-                                <li><input value="Send Message" class="button alt" type="submit"></li>
+                                <li><input value="Submit" class="button alt" type="submit"></li>
                             </ul>
                         </form>
 

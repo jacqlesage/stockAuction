@@ -28,7 +28,7 @@ public class Customer extends Model{
     @Id
     public int id;
 
-    @Constraints.Required(message="validation.required")
+     @Constraints.Required(message="validation.required")
 //    @Constraints.Email(message="validation.fname")
     @Constraints.MaxLength(value=100,message="validation.maxLength")
 //    @Column(unique=true, nullable=false, length=100)

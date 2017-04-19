@@ -25,4 +25,6 @@ GET /showBlank                     controllers.CustomerController.showBlank
 GET /showBlank                controllers.CustomerController.addCustomer
 
 #add the new customer to the database
-POST /customer                     controllers.JavaApplicationDatabase.insertUser
+#POST /customer                     controllers.JavaApplicationDatabase.insertUser
+
+POST /customer                         controllers.JavaApplicationDatabase.insertUser

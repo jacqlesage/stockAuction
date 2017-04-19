@@ -36,22 +36,26 @@ public class CustomerLogin extends Model{
     public static Finder<Long, CustomerLogin> find = new Finder<Long,CustomerLogin>(CustomerLogin.class);
 
     /**
+     *A method which creates a customer in the database and also will save a customer login object to the db.
      *
      * @param email user name of the customer
      * @param password password in plan text to hash
      * @return a Result - to decide which page we are going to redircct too.
      */
-    public static Result createLogin(String email, String password) {
+    public static Result createLogin(String email, String password, Customer customer) {
 
         if(CustomerLogin.find.where().eq("email",email).findUnique() != null) {//then email is alreay in system
             return redirect (controllers.routes.AsyncController.message());
         }else {
+            //save the customer object to database
+            customer.save();
+            //then create the customer login table - deals with primary key issue i.e no customer object no customerLogin option can be created
             CustomerLogin cus = new CustomerLogin();
-
+            //hash the password
             cus.email = email;
             cus.passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
             cus.password = cus.passwordHash;
-
+            //save details to login table
             cus.save();
 
         }
@@ -69,6 +73,7 @@ public class CustomerLogin extends Model{
     public static CustomerLogin authenticate(String email, String password) {
         CustomerLogin cus = CustomerLogin.find.where().eq("email",email).findUnique();
         if (cus != null && BCrypt.checkpw(password, cus.passwordHash)) {
+
             return cus;
         } else {
             return null;

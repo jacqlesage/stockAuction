@@ -38,13 +38,13 @@ public class JavaApplicationDatabase extends Controller {
     public Result insertUser(){
         //take the 'customerForm' and bind it to the customer model.
         Customer customer = formFactory.form(Customer.class).bindFromRequest().get();
-        //save the info to the database
-        customer.save();
+
 
         //bind to the customer login
         CustomerLogin customerLogin = formFactory.form(CustomerLogin.class).bindFromRequest().get();
-        Result temp = customerLogin.createLogin(customerLogin.email, customerLogin.password);
-        //customerLogin.save();
+        Result temp = customerLogin.createLogin(customerLogin.email, customerLogin.password, customer);
+
+
         //return to index page
         return temp;
 
