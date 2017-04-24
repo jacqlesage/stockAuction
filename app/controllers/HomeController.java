@@ -29,4 +29,9 @@ public class HomeController extends Controller {
 
     }
 
+    public Result admin(){
+
+        return ok(views.html.admin.render("Admin home page"));
+    }
+
 }

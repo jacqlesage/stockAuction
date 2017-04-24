@@ -15,16 +15,20 @@ GET     /message                    controllers.AsyncController.message
 GET     /public/*file               controllers.Assets.at(path = "/public",file)
 
 #A test from the book
-GET     /hello                          controllers.HomeController.hello(name:String)
+GET     /hello                      controllers.HomeController.hello(name:String)
 
 #show the blank user signup form - will need to link this into the main index page for sign up
-GET /showBlank                     controllers.CustomerController.showBlank
+GET     /showBlank                  controllers.CustomerController.showBlank
 
 
 
-GET /showBlank                controllers.CustomerController.addCustomer
+GET     /showBlank                  controllers.CustomerController.addCustomer
 
 #add the new customer to the database
 #POST /customer                     controllers.JavaApplicationDatabase.insertUser
 
-POST /customer                         controllers.JavaApplicationDatabase.insertUser
+POST    /customer                   controllers.JavaApplicationDatabase.insertUser
+
+GET     /admin                      controllers.HomeController.admin
+
+GET     /currentAuction             controllers.JavaApplicationDatabase.showCurrentAuction
