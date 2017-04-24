@@ -11,31 +11,38 @@ import play.mvc.Result;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Constraint;
 import java.util.List;
 
 /**
  * Created by james on 24/04/17.
  */
 @Entity
-@Table(name = "currentAuction")
+@Table(name = "current_auction")
 public class CurrentAuction extends Model {
     @Id
     public int Id;
 
-    @Constraints.Required(message="validation.required")
-    public String currentAUctiontitle;
-    @Constraints.Required(message="validation.required")
-    public String currentAuctionSalesDescription;
-    @Constraints.Required(message="validation.required")
-    public String URLForCurrentAuctionSpecs;
-    @Constraints.Required(message="validation.required")
-    public String URLForCurrentAuctionImages;
-    @Constraints.Required(message="validation.required")
-    public String currentAuctionItemLocation;
-    @Constraints.Required(message="validation.required")
-    public int currentAuctionReservePrice; //never shown I think admin should be able to setup the auction with higher management to add reserve
-    @Constraints.Required(message="validation.required")
-    public int currentAuctionTotalBids;
+    @Constraints.Required
+    public String current_auction_title;
+
+
+    public String current_auction_sales_description;
+
+
+    public String urlfor_current_auction_specs;
+
+
+    public String urlfor_current_auction_images;
+
+
+    public String current_auction_item_location;
+
+
+    public int current_auction_reserve_price; //never shown I think admin should be able to setup the auction with higher management to add reserve
+
+
+    public int current_auction_total_bids;
 
     public static Finder<Integer, CurrentAuction> find = new Finder<Integer,CurrentAuction>(CurrentAuction.class);
 

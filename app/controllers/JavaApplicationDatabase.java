@@ -5,12 +5,12 @@ import model.CurrentAuction;
 import model.Customer;
 import model.CustomerLogin;
 import model.DatabaseModel;
+import play.api.libs.json.Json;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import  play.mvc.*;
 import play.db.*;
-
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -50,20 +50,25 @@ public class JavaApplicationDatabase extends Controller {
 
     }
 
-    public void insertAuction(){
-        CurrentAuction currentAuction = formFactory.form(CurrentAuction.class).bindFromRequest().get();
-        currentAuction.addAuction(currentAuction); //just to seperate out the controller from the class. Could have saved here - should I have ?
-
-    }
+//    public void insertAuction(){
+//        CurrentAuction currentAuction = formFactory.form(CurrentAuction.class).bindFromRequest().get();
+//        currentAuction.addAuction(currentAuction); //just to seperate out the controller from the class. Could have saved here - should I have ?
+//        //showCurrentAuction();
+//
+//
+//    }
 
     public Result showCurrentAuction(){
 
-        JsonNode jsonNode = CurrentAuction.getCurrentAuction();
+//        insertAuction(); //above method
+        CurrentAuction currentAuction = formFactory.form(CurrentAuction.class).bindFromRequest().get();
+        currentAuction.addAuction(currentAuction); //just to seperate out the controller from the class. Could have saved here - should I have ?
+        //showCurrentAuction();
 
-        return ok(jsonNode);
+        JsonNode ca = CurrentAuction.getCurrentAuction();
 
+        return ok(ca);
     }
-
 
 
 }
