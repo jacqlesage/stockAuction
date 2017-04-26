@@ -44,6 +44,10 @@ public class CurrentAuction extends Model {
 
     public int current_auction_total_bids;
 
+
+    public int active;
+
+
     public static Finder<Integer, CurrentAuction> find = new Finder<Integer,CurrentAuction>(CurrentAuction.class);
 
    public static void addAuction(CurrentAuction currentAuction){

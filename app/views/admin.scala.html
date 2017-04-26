@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>@title</title>
+  <script type="text/javascript" src="@routes.Assets.at("loadAuction.js")"></script>
 </head>
 <body>
   <form action="@routes.JavaApplicationDatabase.showCurrentAuction()" method="post">
@@ -18,9 +19,11 @@
     Auction item location:<br>
     <input type="text" name="current_auction_item_location" value="Mickey"><br>
     Auction reserve price:<br>
-    <input type="text" name="current_auction_reserve_price" value="Mouse"><br>
-    Auction reserve price:<br>
-    <input type="text" name="current_auction_total_bids" value="Mouse"><br><br>
+    <input type="number" name="current_auction_reserve_price" value="Mouse"><br>
+    Auction total current bids:<br>
+    <input type="number" name="current_auction_total_bids" value="Mouse"><br>
+    Auction active (=1):<br>
+    <input type="number" name="active" value="Mouse"><br><br>
     <input type="submit" value="Submit">
 </form>
 

@@ -67,7 +67,7 @@ public class JavaApplicationDatabase extends Controller {
 
         JsonNode ca = CurrentAuction.getCurrentAuction();
 
-        return ok(ca);
+        return ok(views.html.auctionTestPage.render(ca));
     }
 
 
