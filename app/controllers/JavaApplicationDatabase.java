@@ -14,6 +14,7 @@ import play.db.*;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.util.List;
 
 
 /**
@@ -66,7 +67,9 @@ public class JavaApplicationDatabase extends Controller {
         //showCurrentAuction();
 
         JsonNode ca = CurrentAuction.getCurrentAuction();
+//        List currentAuctions = CurrentAuction.getCurrentAuctionJava();
 
+//        return ok(views.html.auctionTestPage.render(currentAuctions));
         return ok(views.html.auctionTestPage.render(ca));
     }
 

@@ -9,6 +9,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-rjs" % "1.0.8")
 addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.6")
+addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "latest.integration")
 
 
 //addSbtPlugin("net.ground5hark.sbt" % "sbt-css-compress" % "0.1.3")
@@ -28,5 +29,15 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-play-enhancer" % "1.1.0")
 //Play Ebean support, to enable, uncomment this line, and enable in your build.sbt using
 // enablePlugins(PlayEbean)
  addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "3.0.2")
+
+
+
+
+
+
+
+
+
+
 
 

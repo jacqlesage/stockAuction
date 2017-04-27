@@ -64,4 +64,51 @@ public class CurrentAuction extends Model {
 
    }
 
+    public static List getCurrentAuctionJava(){
+
+        // List<CurrentAuction> currentAuctions = new Model.Finder<Integer, CurrentAuction>(CurrentAuction.class).all();
+
+        return find.all();
+
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public String getCurrent_auction_title() {
+        return current_auction_title;
+    }
+
+    public String getCurrent_auction_sales_description() {
+        return current_auction_sales_description;
+    }
+
+    public String getUrlfor_current_auction_specs() {
+        return urlfor_current_auction_specs;
+    }
+
+    public String getUrlfor_current_auction_images() {
+        return urlfor_current_auction_images;
+    }
+
+    public String getCurrent_auction_item_location() {
+        return current_auction_item_location;
+    }
+
+    public int getCurrent_auction_reserve_price() {
+        return current_auction_reserve_price;
+    }
+
+    public int getCurrent_auction_total_bids() {
+        return current_auction_total_bids;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public static Finder<Integer, CurrentAuction> getFind() {
+        return find;
+    }
 }

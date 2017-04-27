@@ -28,6 +28,7 @@ unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 resolvers += "jBCrypt Repository" at "http://repo1.maven.org/maven2/org/"
+resolvers += "sbt-idea-repo" at "http://mpeltonen.github.com/maven/"
 
 
 routesGenerator := InjectedRoutesGenerator
