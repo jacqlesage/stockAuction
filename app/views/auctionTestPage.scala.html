@@ -26,8 +26,8 @@
     </div>
 
     <form action="" method="post">
-      Auction title:<br>
-      <input type="text" name="current_auction_title" value=""><br>
+      Auction title: @auction.findValue("current_auction_title")<br>
+      <input type="text" name="current_auction_title" value="@auction.findValue("current_auction_title")"><br>
       Auction sales description:<br>
       <input type="text" name="current_auction_sales_description" value="Mouse"><br>
       Auction additional Information URL:<br>
