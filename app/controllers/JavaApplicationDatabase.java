@@ -73,5 +73,22 @@ public class JavaApplicationDatabase extends Controller {
         return ok(views.html.auctionTestPage.render(ca));
     }
 
+    /**
+     * For checking the customer is a customer of ours.
+     */
+    public Result authenticateUser(){
+
+        CustomerLogin customerLogin = formFactory.form(CustomerLogin.class).bindFromRequest().get();
+
+        customerLogin = customerLogin.authenticate(customerLogin.email, customerLogin.password);
+
+        if(customerLogin != null){
+
+            return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction()));
+        }
+
+        return ok(views.html.hello.render(customerLogin.toString()));
+    }
+
 
 }

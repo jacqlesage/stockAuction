@@ -26,18 +26,22 @@
     </div>
 
     <form action="" method="post">
+      Auction Id: @auction.findValue("id")<br>
+      <input type="text" name="current_auction_title" value="@auction.findValue("id")" readonly><br>
       Auction title: @auction.findValue("current_auction_title")<br>
       <input type="text" name="current_auction_title" value="@auction.findValue("current_auction_title")"><br>
       Auction sales description:<br>
-      <input type="text" name="current_auction_sales_description" value="Mouse"><br>
+      <input type="text" name="current_auction_sales_description" value="@auction.findValue("current_auction_sales_description")"><br>
       Auction additional Information URL:<br>
-      <input type="text" name="urlfor_current_auction_specs" value="Mickey"><br>
+      <input type="text" name="urlfor_current_auction_specs" value="@auction.findValue("urlfor_current_auction_specs")"><br>
       Auction image path:<br>
-      <input type="text" name="urlfor_current_auction_images" value="Mouse"><br>
+      <input type="text" name="urlfor_current_auction_images" value="@auction.findValue("urlfor_current_auction_images")"><br>
       Auction item location:<br>
-      <input type="text" name="current_auction_item_location" value="Mickey"><br>
+      <input type="text" name="current_auction_item_location" value="@auction.findValue("current_auction_item_location")"><br>
       Auction total current bids:<br>
-      <input type="text" name="current_auction_total_bids" value="Mouse"><br><br>
+      <input type="text" name="current_auction_total_bids" value="@auction.findValue("current_auction_total_bids")"><br>
+      Your next bid (whole dollars only):<br>
+      <input type="number" name="customer_bid" value="Place your bid here"><br><br>
 
     <input type="submit" value="Submit Bid">
   </form>

@@ -9,6 +9,7 @@ import play.mvc.Result;
 import javax.persistence.*;
 import java.io.Serializable;
 
+import static play.mvc.Results.ok;
 import static play.mvc.Results.redirect;
 
 /**
@@ -68,17 +69,22 @@ public class CustomerLogin extends Model{
      *
      * @param email - user name of the customer
      * @param password - password in plan text to check
-     * @return - a customer login object - if there is one new customer if there is not, exsisting customer.
+     * @return - a customer login object - if there is a return CustomerLogin object it is a exsisting customer .
      */
     public static CustomerLogin authenticate(String email, String password) {
         CustomerLogin cus = CustomerLogin.find.where().eq("email",email).findUnique();
-        if (cus != null && BCrypt.checkpw(password, cus.passwordHash)) {
+        if (cus != null && BCrypt.checkpw(password, CustomerLogin.find.where().eq("email",email).findUnique().password)) {
 
             return cus;
         } else {
+
             return null;
         }
     }
 
 
+
+    public static Finder<Long, CustomerLogin> getFind() {
+        return find;
+    }
 }
