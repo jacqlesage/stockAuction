@@ -90,8 +90,9 @@ public class JavaApplicationDatabase extends Controller {
 
         if(customerLogin != null){
 
+            session("customerInSession", customerInSession.toString());
 
-            return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction())).withHeader("customerInSession", customerInSession.toString());
+            return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction()));
         }
 
         return ok(views.html.hello.render(customerLogin.toString()));
