@@ -82,7 +82,16 @@ public class CustomerLogin extends Model{
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "CustomerLogin{" +
+                "Id=" + Id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", customer=" + customer +
+                '}';
+    }
 
     public static Finder<Long, CustomerLogin> getFind() {
         return find;

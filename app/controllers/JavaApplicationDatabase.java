@@ -6,6 +6,7 @@ import model.Customer;
 import model.CustomerLogin;
 import model.DatabaseModel;
 import play.api.libs.json.Json;
+import play.api.mvc.Session;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -78,13 +79,19 @@ public class JavaApplicationDatabase extends Controller {
      */
     public Result authenticateUser(){
 
+        Session session = null;
+
         CustomerLogin customerLogin = formFactory.form(CustomerLogin.class).bindFromRequest().get();
+
+        //for potential session scope - add customer to the session first
+        CustomerLogin customerInSession= formFactory.form(CustomerLogin.class).bindFromRequest().get();
 
         customerLogin = customerLogin.authenticate(customerLogin.email, customerLogin.password);
 
         if(customerLogin != null){
 
-            return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction()));
+
+            return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction())).withHeader("customerInSession", customerInSession.toString());
         }
 
         return ok(views.html.hello.render(customerLogin.toString()));

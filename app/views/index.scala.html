@@ -1,4 +1,8 @@
+@import play.api.mvc.Request
+@import play.api.mvc.Session
 @(title: String)
+
+
 
 <!DOCTYPE html>
 
@@ -10,7 +14,7 @@
                 <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                @*<script  src="@routes.Assets.at("javascripts/loadauction.coffee")"></script>*@
+                @*(session:play.api.mvc.Session)*@
 
                 @*for glyphi icons*@
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -118,6 +122,7 @@
                     <div class="inner">
 
                         <h3>Thanks for joining our community</h3>
+                        <h2></h2>
 
 
                         <form action="@routes.JavaApplicationDatabase.insertUser()" method="post" id="signUp">
