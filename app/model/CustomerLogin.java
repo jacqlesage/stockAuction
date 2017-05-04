@@ -3,6 +3,7 @@ package model;
 import com.avaje.ebean.Model;
 import controllers.routes;
 import org.mindrot.jbcrypt.BCrypt;
+import play.api.libs.json.Json;
 import play.mvc.Result;
 
 
@@ -20,7 +21,7 @@ import static play.mvc.Results.redirect;
 public class CustomerLogin extends Model{
 
     @Id
-    public int Id;
+    public int id;
 
     @Column(unique=true)
     public String email;
@@ -35,6 +36,8 @@ public class CustomerLogin extends Model{
     public Customer customer;
 
     public static Finder<Long, CustomerLogin> find = new Finder<Long,CustomerLogin>(CustomerLogin.class);
+
+
 
     /**
      *A method which creates a customer in the database and also will save a customer login object to the db.
@@ -85,15 +88,23 @@ public class CustomerLogin extends Model{
     @Override
     public String toString() {
         return "CustomerLogin{" +
-                "Id=" + Id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
-                ", customer=" + customer +
-                '}';
+                "Id=" + id +
+                ", email='" + email ;
     }
 
-    public static Finder<Long, CustomerLogin> getFind() {
-        return find;
+    /**
+     * A method so I can get the customers Id number
+     * @param email - customers email
+     * @return
+     */
+
+    public CustomerLogin findCustomer(String email){
+
+        CustomerLogin cus = CustomerLogin.find.where().eq("email",email).findUnique();
+
+
+        return cus;
     }
+
+
 }

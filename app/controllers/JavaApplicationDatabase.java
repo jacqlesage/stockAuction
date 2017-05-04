@@ -1,6 +1,8 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.CurrentAuction;
 import model.Customer;
 import model.CustomerLogin;
@@ -77,7 +79,7 @@ public class JavaApplicationDatabase extends Controller {
     /**
      * For checking the customer is a customer of ours.
      */
-    public Result authenticateUser(){
+    public Result authenticateUser()  {
 
         Session session = null;
 
@@ -86,16 +88,21 @@ public class JavaApplicationDatabase extends Controller {
         //for potential session scope - add customer to the session first
         CustomerLogin customerInSession= formFactory.form(CustomerLogin.class).bindFromRequest().get();
 
+        //find all the information so I can pick up ID
+        CustomerLogin customerSession = customerInSession.findCustomer(customerInSession.email);
+
         customerLogin = customerLogin.authenticate(customerLogin.email, customerLogin.password);
 
         if(customerLogin != null){
 
-            session("customerInSession", customerInSession.toString());
+            //add the cusotmer ID and email to the session so I can add it to the bid.
+            session("email", customerSession.email);
+            session("id", Integer.toString(customerSession.id));
 
             return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction()));
         }
 
-        return ok(views.html.hello.render(customerLogin.toString()));
+        return ok(views.html.hello.render(customerLogin.email));
     }
 
 

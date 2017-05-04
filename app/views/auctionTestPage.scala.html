@@ -4,6 +4,7 @@
 
 @import com.fasterxml.jackson.databind.JsonNode
 @(auction: JsonNode)
+@session
 
 
 <!DOCTYPE html>
@@ -21,11 +22,15 @@
 
     <div id="test">
 
-
+    <h1>@session.get("id")  @session.get("email").toString </h1>
 
     </div>
 
     <form action="" method="post">
+      Customer: <br>
+      <input type="text" name="customer_email" value="@session.get("email")" readonly><br>
+       Customer Id: <br>
+       <input type="text" name="customer_id" value="@session.get("id")" readonly><br>
       Auction Id: @auction.findValue("id")<br>
       <input type="text" name="current_auction_title" value="@auction.findValue("id")" readonly><br>
       Auction title: @auction.findValue("current_auction_title")<br>
