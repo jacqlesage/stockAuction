@@ -46,18 +46,23 @@ public class AuctionBidHistory extends Model{
     public void placeBid(AuctionBidHistory auctionBidHistory){
         //save bid to table
         auctionBidHistory.save();
+        System.out.print("&&&&&&&&&&&&&&" + auctionBidHistory.toString());
         //check to see if reserve has been hit by checking current auction details
-        //if won
+        boolean won =  auctionWon(auctionBidHistory.amount_bid, auctionBidHistory.auction_id);
+        if(won) {
+            System.out.print("the auction has been won ************");
             // stop auction : hide bid buttons
             //congratulate user
             //notify company of winner
-                //note - we must check timestamps for actual winner
+            //note - we must check timestamps for actual winner
             //excess bids get paid back or asked to contribute to cause
             //post to users facebook - the win?
-        //else
+            //else
             //update pool of funds (i.e + bid)
             //remove funds from account (i.e - bid)
-
+        }else{
+            System.out.print("the auction has not been won************");
+        }
 
     }
 
@@ -69,7 +74,7 @@ public class AuctionBidHistory extends Model{
      */
     public boolean auctionWon(int amount_bid, int auction_id){
         CurrentAuction currentAuction = null;
-
+        System.out.print("im in the auction won method ************");
         currentAuction = currentAuction.find.byId(auction_id);
         //get the total amount in the pool
         int currentReservePrice = currentAuction.current_auction_reserve_price;
@@ -87,5 +92,18 @@ public class AuctionBidHistory extends Model{
      */
     public void updateCurrentAuctionPool(){
 
+    }
+
+    @Override
+    public String toString() {
+        return "AuctionBidHistory{" +
+                "id=" + id +
+                ", auction_id=" + auction_id +
+                ", auction_title='" + auction_title + '\'' +
+                ", amount_bid=" + amount_bid +
+                ", timeOfBid=" + timeOfBid +
+                ", customer_id='" + customer_id + '\'' +
+                ", customer_email='" + customer_email + '\'' +
+                '}';
     }
 }
