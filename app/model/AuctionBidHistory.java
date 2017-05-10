@@ -44,8 +44,11 @@ public class AuctionBidHistory extends Model{
      * @param auctionBidHistory - Takes the object from the bid form. The object is simply the form values needed for identifying the bid.
      */
     public void placeBid(AuctionBidHistory auctionBidHistory){
+        //get current timestamp
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        //place it into timestamp
+        auctionBidHistory.timeOfBid = ts;
         //save bid to table
-
         auctionBidHistory.save();
         System.out.print("&&&&&&&&&&&&&&" + auctionBidHistory.toString());
         //check to see if reserve has been hit by checking current auction details
