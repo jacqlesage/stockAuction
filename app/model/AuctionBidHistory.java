@@ -46,11 +46,11 @@ public class AuctionBidHistory extends Model{
     public void placeBid(AuctionBidHistory auctionBidHistory){
         //get current timestamp
         Timestamp ts = new Timestamp(System.currentTimeMillis());
-        //place it into timestamp
+        //place it into acution constructor - timestamp
         auctionBidHistory.timeOfBid = ts;
         //save bid to table
         auctionBidHistory.save();
-        System.out.print("&&&&&&&&&&&&&&" + auctionBidHistory.toString());
+
         //check to see if reserve has been hit by checking current auction details
         boolean won =  auctionWon(auctionBidHistory.amount_bid, auctionBidHistory.auction_id);
         if(won) {
@@ -82,8 +82,10 @@ public class AuctionBidHistory extends Model{
         currentAuction = currentAuction.find.byId(auction_id);
         //get the total amount in the pool
         int currentReservePrice = currentAuction.current_auction_reserve_price;
+        System.out.print("the current reserve price is *** " + currentReservePrice);
         //add the bid to reserve
-        int updatedReserveFigure = currentReservePrice + amount_bid;
+        int updatedReserveFigure = currentAuction.getCurrent_auction_total_bids() + amount_bid;
+        System.out.print("the updated reserve price is *** " + updatedReserveFigure);
         //if the above is >= currentAuction reserve then auction won
         if(updatedReserveFigure >= currentReservePrice)
             return true;
