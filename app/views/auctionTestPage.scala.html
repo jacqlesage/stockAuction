@@ -26,13 +26,13 @@
 
     </div>
 
-    <form action="" method="post">
+    <form action="@routes.JavaApplicationDatabase.placeBid" method="post">
       Customer: <br>
       <input type="text" name="customer_email" value="@session.get("email")" readonly><br>
        Customer Id: <br>
        <input type="text" name="customer_id" value="@session.get("id")" readonly><br>
       Auction Id: @auction.findValue("id")<br>
-      <input type="text" name="current_auction_title" value="@auction.findValue("id")" readonly><br>
+      <input type="text" name="auction_id" value="@auction.findValue("id")" readonly><br>
       Auction title: @auction.findValue("current_auction_title")<br>
       <input type="text" name="current_auction_title" value="@auction.findValue("current_auction_title")"><br>
       Auction sales description:<br>
@@ -46,7 +46,7 @@
       Auction total current bids:<br>
       <input type="text" name="current_auction_total_bids" value="@auction.findValue("current_auction_total_bids")"><br>
       Your next bid (whole dollars only):<br>
-      <input type="number" name="customer_bid" value="Place your bid here"><br><br>
+      <input type="number" name="amount_bid" value="Place your bid here"><br><br>
 
     <input type="submit" value="Submit Bid">
   </form>

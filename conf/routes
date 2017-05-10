@@ -33,4 +33,9 @@ GET     /admin                     controllers.HomeController.admin
 
 POST    /showCurrentAuction        controllers.JavaApplicationDatabase.showCurrentAuction
 
+GET     /getCurrentAuction            controllers.JavaApplicationDatabase.getCurrentAuction
+
 POST     /showAuction                     controllers.JavaApplicationDatabase.authenticateUser()
+
+#action for placing & saving the bid into the sql tables.
+POST     /placeBid                controllers.JavaApplicationDatabase.placeBid

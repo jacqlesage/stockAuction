@@ -3,10 +3,7 @@ package controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.CurrentAuction;
-import model.Customer;
-import model.CustomerLogin;
-import model.DatabaseModel;
+import model.*;
 import play.api.libs.json.Json;
 import play.api.mvc.Session;
 import play.data.Form;
@@ -16,6 +13,7 @@ import  play.mvc.*;
 import play.db.*;
 import javax.inject.Inject;
 import javax.sql.DataSource;
+import javax.swing.text.html.HTML;
 import java.sql.Connection;
 import java.util.List;
 
@@ -77,6 +75,18 @@ public class JavaApplicationDatabase extends Controller {
     }
 
     /**
+     * just a temp mehtod will need to tidy up this as it shouldnt be in controller
+     * @return
+     */
+    public Result getCurrentAuction(){
+
+        JsonNode ca = CurrentAuction.getCurrentAuction();
+
+        return ok(views.html.auctionTestPage.render(ca));
+
+    }
+
+    /**
      * For checking the customer is a customer of ours.
      */
     public Result authenticateUser()  {
@@ -92,7 +102,7 @@ public class JavaApplicationDatabase extends Controller {
         CustomerLogin customerSession = customerInSession.findCustomer(customerInSession.email);
 
         customerLogin = customerLogin.authenticate(customerLogin.email, customerLogin.password);
-
+       
         if(customerLogin != null){
 
             //add the cusotmer ID and email to the session so I can add it to the bid.
@@ -105,5 +115,15 @@ public class JavaApplicationDatabase extends Controller {
         return ok(views.html.hello.render(customerLogin.email));
     }
 
+    public Result placeBid(){
+
+       AuctionBidHistory auctionBidHistory = formFactory.form(AuctionBidHistory.class).bindFromRequest().get();
+       //pass method back to object to preform logic
+       auctionBidHistory.placeBid(auctionBidHistory);
+
+        JsonNode ca = CurrentAuction.getCurrentAuction();
+
+        return ok(views.html.auctionTestPage.render(ca));
+    }
 
 }

@@ -19,7 +19,7 @@ public class AuctionBidHistory extends Model{
 
     public int auction_id;
 
-    public String auction_title;
+    public String current_auction_title;
 
     public int amount_bid;
 
@@ -29,9 +29,9 @@ public class AuctionBidHistory extends Model{
 
     public String customer_email;
 
-    public AuctionBidHistory(int auction_id, String auction_title, int amount_bid, Timestamp timeOfBid, String customer_id, String customer_email) {
+    public AuctionBidHistory(int auction_id, String current_auction_title, int amount_bid, Timestamp timeOfBid, String customer_id, String customer_email) {
         this.auction_id = auction_id;
-        this.auction_title = auction_title;
+        this.current_auction_title = current_auction_title;
         this.amount_bid = amount_bid;
         this.timeOfBid = timeOfBid;
         this.customer_id = customer_id;
@@ -45,6 +45,7 @@ public class AuctionBidHistory extends Model{
      */
     public void placeBid(AuctionBidHistory auctionBidHistory){
         //save bid to table
+
         auctionBidHistory.save();
         System.out.print("&&&&&&&&&&&&&&" + auctionBidHistory.toString());
         //check to see if reserve has been hit by checking current auction details
@@ -99,7 +100,7 @@ public class AuctionBidHistory extends Model{
         return "AuctionBidHistory{" +
                 "id=" + id +
                 ", auction_id=" + auction_id +
-                ", auction_title='" + auction_title + '\'' +
+                ", auction_title='" + current_auction_title + '\'' +
                 ", amount_bid=" + amount_bid +
                 ", timeOfBid=" + timeOfBid +
                 ", customer_id='" + customer_id + '\'' +
