@@ -1,5 +1,7 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -126,4 +128,15 @@ public class JavaApplicationDatabase extends Controller {
         return ok(views.html.auctionTestPage.render(ca));
     }
 
+    /**
+     * A method which delivers the points to a Json end point : users in this case
+     * @return
+     */
+    public Result getAllUsers(){
+        String jsonNode = null;
+        Customer customer = new Customer();
+        jsonNode = customer.getAllCustomers();
+        return ok(jsonNode);
+
+    }
 }
