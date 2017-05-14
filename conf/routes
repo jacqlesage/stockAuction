@@ -39,3 +39,5 @@ POST     /showAuction                     controllers.JavaApplicationDatabase.au
 
 #action for placing & saving the bid into the sql tables.
 POST     /placeBid                controllers.JavaApplicationDatabase.placeBid
+
+GET      /users                   controllers.JavaApplicationDatabase.getAllUsers

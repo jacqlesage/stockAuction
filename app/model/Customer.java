@@ -1,5 +1,10 @@
 package model;
 //import org.springframework.ui.Model;
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import controllers.JavaApplicationDatabase;
 import play.data.format.*; // date format
 import play.data.validation.*; // constraints
@@ -10,11 +15,15 @@ import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 import com.avaje.ebean.Model;
+import play.libs.Json;
+import play.mvc.Result;
 
 import javax.persistence.*;
 import javax.validation.Constraint;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+
+import static play.mvc.Results.ok;
 
 /**
  * Created by james on 2/03/17.
@@ -75,9 +84,11 @@ public class Customer extends Model{
     @Constraints.Required(message="validation.required")
     public String country;
 
-    @Transient //Defines this field as being transient (not persisted)
+
     @JoinColumn(table="cusotmer_login")
     @Constraints.Required(message="validation.required")
+    @Transient //Defines this field as being transient (not persisted)
+    @JsonIgnore
     public String password;
 
     //this should be auto to 1 once email validation is done.- needs some work on this.
@@ -87,11 +98,68 @@ public class Customer extends Model{
      public int active;
 
     @OneToOne(mappedBy = "customer")
+    @Transient
+    @JsonIgnore
      public CustomerLogin customerLogin;
 
-    public static Finder<Long, Customer> find = new Finder<Long,Customer>(Customer.class);
+    @JsonIgnore
+    @Transient
+    public  Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class);
 
 
+    public Customer(int id, String firstName, String lastName, String phoneNumber, String email, String address1, String address2, String suburb, String city, int postcode, String country, int active) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.suburb = suburb;
+        this.city = city;
+        this.postcode = postcode;
+        this.country = country;
+        this.active = active;
+    }
 
+    public Customer() {
 
+    }
+
+    public String getAllCustomers(){
+
+        //Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class).all();
+        //System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
+        String jsonString = Ebean.json().toJson(find.all());
+        return jsonString;
+
+    }
+
+    public String getAllCustomers2(){
+
+        Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class);
+        System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
+
+        return Ebean.json().toJson(find);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", suburb='" + suburb + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode=" + postcode +
+                ", country='" + country + '\'' +
+                ", active=" + active +
+                ", customerLogin=" + customerLogin +
+                '}';
+    }
 }
