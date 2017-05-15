@@ -128,19 +128,21 @@ public class Customer extends Model{
 
     public String getAllCustomers(){
 
-        //Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class).all();
-        //System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
+       //JsonNode jsonNode =null;
         String jsonString = Ebean.json().toJson(find.all());
+        //jsonNode = Json.toJson(jsonString);
+
+        //return Ebean.json().toJson(find);
         return jsonString;
 
     }
 
-    public String getAllCustomers2(){
+    public void getAllCustomers2(){
 
-        Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class);
-        System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
-
-        return Ebean.json().toJson(find);
+//        Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class);
+//        System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
+//
+//        return Ebean.json().toJson(find);
 
     }
 
