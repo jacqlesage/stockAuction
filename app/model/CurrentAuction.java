@@ -3,6 +3,7 @@ package model;
 import akka.stream.impl.io.OutputStreamSourceStage;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
+import com.avaje.ebean.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.data.validation.Constraints;
 
@@ -47,7 +48,7 @@ public class CurrentAuction extends Model {
 
     public int active;
 
-
+    @JsonIgnore
     public static Finder<Integer, CurrentAuction> find = new Finder<Integer,CurrentAuction>(CurrentAuction.class);
 
    public static void addAuction(CurrentAuction currentAuction){
@@ -60,7 +61,7 @@ public class CurrentAuction extends Model {
 
       // List<CurrentAuction> currentAuctions = new Model.Finder<Integer, CurrentAuction>(CurrentAuction.class).all();
 
-       return Json.toJson(find.all());
+       return Json.toJson(find.where().eq("active", 1).setDistinct(true).findList());
 
    }
 
@@ -70,6 +71,11 @@ public class CurrentAuction extends Model {
 
         return find.all();
 
+    }
+
+    public static JsonNode showAllAuctions(){
+
+        return Json.toJson(find.all());
     }
 
     public int getId() {

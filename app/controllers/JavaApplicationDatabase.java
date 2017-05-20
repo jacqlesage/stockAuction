@@ -92,7 +92,7 @@ public class JavaApplicationDatabase extends Controller {
      * For checking the customer is a customer of ours.
      */
     public Result authenticateUser()  {
-
+        JwtController jwtController = new JwtController();
         Session session = null;
 
         CustomerLogin customerLogin = formFactory.form(CustomerLogin.class).bindFromRequest().get();
@@ -111,6 +111,7 @@ public class JavaApplicationDatabase extends Controller {
             session("email", customerSession.email);
             session("id", Integer.toString(customerSession.id));
 
+
             return ok(views.html.auctionTestPage.render(CurrentAuction.getCurrentAuction()));
         }
 
@@ -125,6 +126,7 @@ public class JavaApplicationDatabase extends Controller {
 
         JsonNode ca = CurrentAuction.getCurrentAuction();
 
+
         return ok(views.html.auctionTestPage.render(ca));
     }
 
@@ -137,6 +139,12 @@ public class JavaApplicationDatabase extends Controller {
         Customer customer = new Customer();
         jsonNode = customer.getAllCustomers();
         return ok(jsonNode);
+
+    }
+
+    public Result showAllAuctions(){
+
+       return ok(CurrentAuction.showAllAuctions());
 
     }
 }

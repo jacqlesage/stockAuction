@@ -39,5 +39,9 @@ POST     /showAuction                     controllers.JavaApplicationDatabase.au
 
 #action for placing & saving the bid into the sql tables.
 POST     /placeBid                controllers.JavaApplicationDatabase.placeBid
-
+#lists all users as Json end point
 GET      /users                   controllers.JavaApplicationDatabase.getAllUsers
+#Lists all auctions as Json end point
+GET      /auctions                   controllers.JavaApplicationDatabase.showAllAuctions
+
+GET     /jwt                        controllers.JwtController.createJwtv2(a:String, b:String)
