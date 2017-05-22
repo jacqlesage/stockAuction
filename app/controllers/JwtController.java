@@ -16,10 +16,12 @@ public class JwtController extends Controller {
 
     JsonWebToken jsonWebToken = new JsonWebToken(username, role);
     String temp = "";
+        String decoded = "";
     temp = jsonWebToken.createJWT("fish", "role");
     System.out.print(temp + "*************");
+    decoded = jsonWebToken.parseJWT(temp);
 
-   return ok(Json.toJson(temp));
+   return ok(Json.toJson(decoded));
     }
 
 

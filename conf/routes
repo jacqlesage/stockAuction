@@ -43,5 +43,5 @@ POST     /placeBid                controllers.JavaApplicationDatabase.placeBid
 GET      /users                   controllers.JavaApplicationDatabase.getAllUsers
 #Lists all auctions as Json end point
 GET      /auctions                   controllers.JavaApplicationDatabase.showAllAuctions
-
+#a tester for the JWT token
 GET     /jwt                        controllers.JwtController.createJwtv2(a:String, b:String)
