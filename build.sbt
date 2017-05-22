@@ -23,7 +23,8 @@ libraryDependencies ++= Seq( javaJdbc, jdbc , cache , ws, specs2 % Test, javaWs,
   "com.typesafe.play" %% "play-mailer" % "5.0.0-M1",
   "org.mindrot" % "jbcrypt" % "0.3m",
   "com.jason-goodwin" %% "authentikat-jwt" % "0.3.5",
-  "io.jsonwebtoken" % "jjwt" % "0.6.0")
+  "io.jsonwebtoken" % "jjwt" % "0.6.0",
+  "com.restfb" % "restfb" % "1.6.12")
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
