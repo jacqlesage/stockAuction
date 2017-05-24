@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
+    <script type="text/javascript" src="public/javascripts/facebook.js"></script>
 </head>
 <body>
     @*facebook script *@
@@ -37,13 +38,30 @@
     </div>
 
     <div>
-        <script>
-        function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-        });
-        }
-        </script>
+        <button type="button" onclick="faceBookLogin()">Click me!</button>
+
     </div>
+
+    <div>
+        <button type="button" onclick="getFBName()">Click me2!</button>
+
+    </div>
+    <div>
+    <h1 id="fbName"></h1>
+    </div>
+
+    <div>
+        <button type="button" onclick="getLoginInfo()">Click me3!</button>
+
+    </div>
+    <div>
+        <h1 id="fbLoginInfo"></h1>
+    </div>
+
+        <div>
+    <button type="button" onclick="logOutOfFb()">Click me4!</button>
+
+</div>
+
 </body>
 </html>
