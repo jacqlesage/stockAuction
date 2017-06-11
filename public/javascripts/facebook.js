@@ -19,9 +19,11 @@ function faceBookLogin() {
 
 /** get name of user **/
 function getFBName() {
-    FB.api('/me', {fields: 'last_name'}, function (response) {
+    FB.api('/me', {fields: 'first_name,last_name'}, function (response) {
+        console.log(response.first_name);
         console.log(response.last_name);
-        document.getElementById("fbName").innerHTML = response.last_name;
+        document.getElementById("fbFName").innerHTML = response.first_name;
+        document.getElementById("fbLName").innerHTML = response.last_name;
     })
 }
 
@@ -30,6 +32,14 @@ function getLoginInfo() {
         //statusChangeCallback(response);
         console.log(response.authResponse.accessToken);
         document.getElementById("fbLoginInfo").innerHTML = response.authResponse.accessToken;
+    });
+}
+
+function getInfoAboutMe() {
+    FB.api('/me', {fields: 'email'}, function (response) {
+        document.getElementById("fbLoginInfo").innerHTML = response;
+        console.log(JSON.stringify(response));
+        console.log(response.email);
     });
 }
 

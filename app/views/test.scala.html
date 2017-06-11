@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  @*facebook script *@
+
+<script>
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '311623609267600',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.9'
+              });
+              FB.AppEvents.logPageView();
+            };
+
+            (function(d, s, id){
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) {return;}
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+<div>
+  <button type="button" onclick="FB.getAuthResponse()">Getresponse </button>
+
+</div>
+<div>
+  <h1 id="fbName"></h1>
+</div>
+
+
+<div>
+  <button type="button" onclick="getFBName()">Get my name</button>
+
+</div>
+<div>
+  <h1 id="fbName"></h1>
+</div>
+
+</body>
+</html>
+

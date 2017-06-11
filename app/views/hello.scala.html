@@ -12,10 +12,10 @@
     <script>
             window.fbAsyncInit = function() {
                 FB.init({
-                    appId      : '311623609267600',
+                    appId      : '311623609267600', //needs to get passed in as should be secret
                     cookie     : true,
                     xfbml      : true,
-                    version    : 'v2.8'
+                    version    : 'v2.9'
                 });
                 FB.AppEvents.logPageView();
             };
@@ -43,25 +43,40 @@
     </div>
 
     <div>
-        <button type="button" onclick="getFBName()">Click me2!</button>
+        <button type="button" onclick="getFBName()">Get my name</button>
 
     </div>
     <div>
-    <h1 id="fbName"></h1>
+    <h1 id="fbFName"></h1>
+    </div>
+    <div>
+        <h1 id="fbLName"></h1>
     </div>
 
     <div>
-        <button type="button" onclick="getLoginInfo()">Click me3!</button>
+        <button type="button" onclick="getLoginInfo()">auth token</button>
 
     </div>
     <div>
         <h1 id="fbLoginInfo"></h1>
     </div>
-
-        <div>
-    <button type="button" onclick="logOutOfFb()">Click me4!</button>
+    <div>
+    <button type="button" onclick="getInfoAboutMe()">me</button>
 
 </div>
+    <div>
+        <h1 id="fbInfoAboutMe"></h1>
+    </div>
+
+
+
+        <div>
+    <button type="button" onclick="logOutOfFb()">log out of fb!</button>
+
+</div>
+
+
+
 
 </body>
 </html>

@@ -45,3 +45,7 @@ GET      /users                   controllers.JavaApplicationDatabase.getAllUser
 GET      /auctions                   controllers.JavaApplicationDatabase.showAllAuctions
 #a tester for the JWT token
 GET     /jwt                        controllers.JwtController.createJwtv2(a:String, b:String)
+#a place to send the oAuth token back
+POST    /getToken                    controllers.Security.getToken(a:String)
+#testing stuff
+GET     /test                       controllers.Security.test
