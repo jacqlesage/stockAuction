@@ -13,6 +13,8 @@ import play.data.FormFactory;
 import play.mvc.Controller;
 import  play.mvc.*;
 import play.db.*;
+import play.routing.JavaScriptReverseRouter;
+
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import javax.swing.text.html.HTML;
@@ -145,6 +147,28 @@ public class JavaApplicationDatabase extends Controller {
     public Result showAllAuctions(){
 
        return ok(CurrentAuction.showAllAuctions());
+
+    }
+
+    public Result testAllUsers(){
+
+
+
+
+        return ok(views.html.test.render());
+    }
+
+    /**
+     * This is a method which allows us to access the JS routing support in Play
+     *
+     */
+    public Result jsRoutes()
+    {
+
+        return ok(JavaScriptReverseRouter.create("appRoutes", //appRoutes will be the JS object available in our view
+                routes.javascript.JavaApplicationDatabase.getAllUsers())
+
+        ).as("text/javascript");
 
     }
 }

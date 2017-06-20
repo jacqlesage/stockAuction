@@ -82,16 +82,19 @@ function statusChangeCallback(response) {
 
         appRoutes.controllers.JavaApplicationDatabase.getAllUsers().ajax({
            // url: 'http://localhost:9000/test',
+            type: 'get',
+            dataType: 'json',
             success: function (data) {
+                //console.log(data.);
                 var peopleList = $('#peopleList');
-                $(data).each(function (index, person) {
-                    console.log(person.name + "here i am ");
-                    peopleList.append('<li>' + person.name + ' <a href="#" data-id="' + person.id + '" class="deletePerson">Delete</a></li>');
-                });
+                $.each(data, function (index, value) {
+                    console.log(value.firstName);
+                })
+
             }
         });
 
-        console.log(infoFromUser.toString() + " my own one");
+        //console.log(infoFromUser.toString() + " my own one");
 
         // routes.javascript.JavaApplicationDatabase.getAllUsers().ajax({
         //
@@ -116,3 +119,4 @@ function statusChangeCallback(response) {
 //         personNameInput.val('');
 //     }
 // });
+//peopleList.append('<li>' + person.name + ' <a href="#" data-id="' + person.id + '" class="deletePerson">Delete</a></li>');

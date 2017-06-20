@@ -10,6 +10,8 @@ GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
 
+
+GET   /assets/js/routes             controllers.JavaApplicationDatabase.jsRoutes()
 # Map static resources from the /public folder to the /assets URL path
 # this is picking up my css file - main.css
 GET     /public/*file               controllers.Assets.at(path = "/public",file)
