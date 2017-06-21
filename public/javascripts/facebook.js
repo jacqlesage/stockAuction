@@ -63,7 +63,7 @@ function checkLoginState(){
 }
 
 function statusChangeCallback(response) {
-    var $infoFromUser;
+    var infoFromUser = {};
     console.log('statusChangeCallback');
     console.log(response);
     // The response object is returned with a status field that lets the
@@ -75,10 +75,54 @@ function statusChangeCallback(response) {
         //testAPI();
         //getInfoAboutMe();
 
-        FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
-            //document.getElementById("fbLoginInfo").innerHTML = response;
-            infoFromUser = JSON.stringify(response);
-        });
+
+    //     infoFromUser = {info1 : FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
+    //        //document.getElementById("fbLoginInfo").innerHTML = response;
+    //        infoFromUser = getFBEmailAndName(response);
+    //        //infoFromUser = getFBEmailAndName("email");
+    //        console.log(infoFromUser.length + "facebook infog");
+    //    })
+    // };
+
+
+        someObj = getUserInfo();
+        var userInfo = {};
+        var keep;
+
+
+
+        function getUserInfo() {
+             userInfo = fbUser(function (model) {
+                 appRoutes.controllers.JavaApplicationDatabase.saveFBInfo().ajax({
+                     type: "PUT",//POST?
+                     url: "myURL",
+                     contentType: "application/json",
+                     data:  model,
+                     success: function () {
+
+                     })
+
+                 )};
+                console.log(model);
+                  //keepdata(model);
+
+            });
+
+        }
+
+        function fbUser(callback) {
+            return FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
+                callback(response);
+            });
+
+        }
+
+        //   function keepdata(model){
+        //     console.log(model);
+        //     return model
+        // }
+
+
 
         appRoutes.controllers.JavaApplicationDatabase.getAllUsers().ajax({
            // url: 'http://localhost:9000/test',
@@ -88,13 +132,15 @@ function statusChangeCallback(response) {
                 //console.log(data.);
                 var peopleList = $('#peopleList');
                 $.each(data, function (index, value) {
-                    console.log(value.firstName);
+                    //console.log(value.firstName);
+                    //console.log(infoFromUser.length + "facebook info");
                 })
 
             }
         });
 
-        //console.log(infoFromUser.toString() + " my own one");
+
+        console.log(userInfo.toString() + " my own one");
 
         // routes.javascript.JavaApplicationDatabase.getAllUsers().ajax({
         //
@@ -110,6 +156,17 @@ function statusChangeCallback(response) {
 
 
 }
+
+function getFBEmailAndName(response){
+    var x = JSON.stringify(response);
+    var y = response.email;
+    var z = 1;
+
+    return [1];
+
+}
+
+
 //
 // appRoutes.controllers.Application.create().ajax({
 //     data : JSON.stringify(data),
