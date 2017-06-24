@@ -43,6 +43,9 @@ POST     /showAuction                     controllers.JavaApplicationDatabase.au
 POST     /placeBid                controllers.JavaApplicationDatabase.placeBid
 #lists all users as Json end point
 GET      /users                   controllers.JavaApplicationDatabase.getAllUsers
+#test for posting fb info data
+POST    /saveFbInfo               controllers.JavaApplicationDatabase.saveFbInfo
+
 #Lists all auctions as Json end point
 GET      /auctions                   controllers.JavaApplicationDatabase.showAllAuctions
 #a tester for the JWT token

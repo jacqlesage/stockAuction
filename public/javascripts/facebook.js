@@ -92,27 +92,32 @@ function statusChangeCallback(response) {
 
 
         function getUserInfo() {
+
              userInfo = fbUser(function (model) {
-                 appRoutes.controllers.JavaApplicationDatabase.saveFBInfo().ajax({
-                     type: "PUT",//POST?
-                     url: "myURL",
-                     contentType: "application/json",
-                     data:  model,
-                     success: function () {
-
-                     })
-
-                 )};
-                console.log(model);
-                  //keepdata(model);
+                var x= "fish";
+                 $.ajax({
+                     url: "http://localhost:9000/saveFbInfo",
+                     type: "post",
+                     datatype: "json",
+                     data: x,
+                     success: function(d) {
+                         if(response == 'success')
+                             alert(d);
+                         else
+                             alert(d);
+                     }
+                 });
 
             });
 
         }
 
         function fbUser(callback) {
-            return FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
+             return FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
+                 console.log(response);
                 callback(response);
+
+
             });
 
         }

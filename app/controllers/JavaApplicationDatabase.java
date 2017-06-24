@@ -152,12 +152,12 @@ public class JavaApplicationDatabase extends Controller {
     }
 
     public Result saveFbInfo(){
-
+        System.out.print("made it into the fb method");
         JsonNode jsonNode = request().body().asJson();
         Customer customer = new Customer();
         customer.firstName = jsonNode.findValue("first_name").asText();
 
-        return ok(jsonNode);
+        return ok(jsonNode.toString());
     }
 
     /**
@@ -168,7 +168,8 @@ public class JavaApplicationDatabase extends Controller {
     {
 
         return ok(JavaScriptReverseRouter.create("appRoutes", //appRoutes will be the JS object available in our view
-                routes.javascript.JavaApplicationDatabase.getAllUsers())
+                routes.javascript.JavaApplicationDatabase.getAllUsers(),
+                routes.javascript.JavaApplicationDatabase.saveFbInfo())
 
         ).as("text/javascript");
 
