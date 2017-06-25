@@ -153,11 +153,11 @@ public class JavaApplicationDatabase extends Controller {
 
     public Result saveFbInfo(){
         System.out.print("made it into the fb method");
-        JsonNode jsonNode = request().body().asJson();
-        Customer customer = new Customer();
-        customer.firstName = jsonNode.findValue("first_name").asText();
+        //JsonNode jsonNode = request().body().asJson();
+        //Customer customer = new Customer();
+        //customer.firstName = jsonNode.findValue("first_name").asText();
 
-        return ok(jsonNode.toString());
+        return ok("testing the method out");
     }
 
     /**
