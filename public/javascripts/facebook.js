@@ -94,19 +94,20 @@ function statusChangeCallback(response) {
         function getUserInfo() {
 
              userInfo = fbUser(function (model) {
-                var x= "fish";
-                 $.ajax({
-                     url: "http://localhost:9000/saveFbInfo",
-                     type: "post",
-                     datatype: "json",
-                     data: x,
-                     success: function(d) {
-                         if(response == 'success')
-                             alert(d);
-                         else
-                             alert(d);
-                     }
-                 });
+                 console.log(model);
+
+                 // $.ajax({
+                 //     url: "http://localhost:9000/saveFbInfo",
+                 //     type: "post",
+                 //     datatype: "json",
+                 //     data: model,
+                 //     success: function(d) {
+                 //         if(response == 'success')
+                 //             alert(model);
+                 //         else
+                 //             alert(d);
+                 //     }
+                 // });
 
             });
 
@@ -114,7 +115,25 @@ function statusChangeCallback(response) {
 
         function fbUser(callback) {
              return FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
-                 console.log(response);
+
+                 var x = JSON.stringify(response);
+                 console.log(x + "one");
+                 $.ajax({
+                         url: "http://localhost:9000/saveFbInfo",
+                         type: "POST",
+                         datatype: "json",
+                         data: x,
+                         success: function (d) {
+
+                             //alert(d + "is winning");
+                         },
+
+                         error: function (e) {
+
+                             alert(e + " is not winning");
+                         }
+                 });
+
                 callback(response);
 
 
@@ -122,36 +141,24 @@ function statusChangeCallback(response) {
 
         }
 
-        //   function keepdata(model){
-        //     console.log(model);
-        //     return model
-        // }
 
 
 
-        appRoutes.controllers.JavaApplicationDatabase.getAllUsers().ajax({
-           // url: 'http://localhost:9000/test',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                //console.log(data.);
-                var peopleList = $('#peopleList');
-                $.each(data, function (index, value) {
-                    //console.log(value.firstName);
-                    //console.log(infoFromUser.length + "facebook info");
-                })
-
-            }
-        });
-
-
-        console.log(userInfo.toString() + " my own one");
-
-        // routes.javascript.JavaApplicationDatabase.getAllUsers().ajax({
-        //
-        //
-        //     }
+        // appRoutes.controllers.JavaApplicationDatabase.getAllUsers().ajax({
+        //    // url: 'http://localhost:9000/test',
+        //    //  type: 'get',
+        //    //  dataType: 'json',
+        //    //  success: function (data) {
+        //    //      //console.log(data.);
+        //    //      // var peopleList = $('#peopleList');
+        //    //      // $.each(data, function (index, value) {
+        //    //      //     //console.log(value.firstName);
+        //    //      //     //console.log(infoFromUser.length + "facebook info");
+        //    //      // })
+        //    //
+        //    //  }
         // });
+
 
     } else {
         // The person is not logged into your app or we are unable to tell.

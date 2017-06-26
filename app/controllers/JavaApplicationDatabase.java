@@ -14,6 +14,7 @@ import play.mvc.Controller;
 import  play.mvc.*;
 import play.db.*;
 import play.routing.JavaScriptReverseRouter;
+import scala.Console;
 import scala.util.parsing.json.JSON;
 
 import javax.inject.Inject;
@@ -21,6 +22,7 @@ import javax.sql.DataSource;
 import javax.swing.text.html.HTML;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -153,11 +155,13 @@ public class JavaApplicationDatabase extends Controller {
 
     public Result saveFbInfo(){
         System.out.print("made it into the fb method");
-        //JsonNode jsonNode = request().body().asJson();
-        //Customer customer = new Customer();
+        //String jsonNode = request().body().asJson().toString();
+        final Map<String, String[]> values = request().body().asFormUrlEncoded();
+        System.out.print(values.keySet() + "in key set");
+        //System.out.print(values.containsKey("gooja082@student.otago.ac.nz"));
         //customer.firstName = jsonNode.findValue("first_name").asText();
 
-        return ok("testing the method out");
+        return ok(values.keySet() + "in here");
     }
 
     /**
