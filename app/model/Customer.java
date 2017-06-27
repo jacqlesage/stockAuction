@@ -122,6 +122,13 @@ public class Customer extends Model{
         this.active = active;
     }
 
+    public Customer(String firstName, String lastName, String email) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public Customer() {
 
     }
@@ -143,6 +150,13 @@ public class Customer extends Model{
 //        System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
 //
 //        return Ebean.json().toJson(find);
+
+    }
+
+    public void fbCustomerSignup(){
+
+
+
 
     }
 
