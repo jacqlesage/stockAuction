@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.restfb.json.JsonArray;
 import model.*;
 import play.api.libs.json.Json;
 import play.api.mvc.Session;
@@ -16,13 +17,13 @@ import play.db.*;
 import play.routing.JavaScriptReverseRouter;
 import scala.Console;
 import scala.util.parsing.json.JSON;
+import scala.util.parsing.json.JSONObject;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import javax.swing.text.html.HTML;
 import java.sql.Connection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -154,12 +155,26 @@ public class JavaApplicationDatabase extends Controller {
     }
 
     public Result saveFbInfo(){
-        System.out.print("made it into the fb method");
-        //String jsonNode = request().body().asJson().toString();
+        String email ="";
+        String password="";
+        Customer cus = new Customer();
+        CustomerLogin customerLogin = new CustomerLogin();
+
         final Map<String, String[]> values = request().body().asFormUrlEncoded();
-        System.out.print(values.keySet() + "in key set");
-        //System.out.print(values.containsKey("gooja082@student.otago.ac.nz"));
-        //customer.firstName = jsonNode.findValue("first_name").asText();
+
+        cus = customerLogin.convertMapObj(values);
+        email = cus.email;
+        if(customerLogin.findCustomer(email)== null){
+            //customer not signed up with us before
+            //save email
+            //what do I do about password? generate random one
+            password = customerLogin.generateRandomPasswordForSocialMediaLogIn();
+            System.out.print("***************** " + password);
+            customerLogin.createLogin(email, password, cus);
+
+        }else{
+            //need to finish this off - this should remove login to fb button and add users name - this should also happen once logged in.
+        }
 
         return ok(values.keySet() + "in here");
     }
