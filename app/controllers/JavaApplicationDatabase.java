@@ -20,8 +20,18 @@ import scala.util.parsing.json.JSON;
 import scala.util.parsing.json.JSONObject;
 
 import javax.inject.Inject;
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.sql.DataSource;
 import javax.swing.text.html.HTML;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.*;
 
@@ -154,7 +164,7 @@ public class JavaApplicationDatabase extends Controller {
 
     }
 
-    public Result saveFbInfo(){
+    public Result saveFbInfo() throws ScriptException, NoSuchMethodException, IOException, URISyntaxException {
         String email ="";
         String password="";
         Customer cus = new Customer();
@@ -173,6 +183,24 @@ public class JavaApplicationDatabase extends Controller {
             customerLogin.createLogin(email, password, cus);
 
         }else{
+            System.out.print("%%%%%%%%%%%%%% big tester");
+
+            //ok if they already have logged in with FB - we need to point them back into the login page with there username filled out (email address)
+            //and ask them for their password. The login with FB is only for use to "speed up the account information collection"
+            ScriptEngineManager manager = new ScriptEngineManager();
+            ScriptEngine engine = manager.getEngineByName("JavaScript");
+// read script file
+            URL fileUrl = getClass().getResource("/public/javascripts/webworker.js");
+
+            engine.eval(Files.newBufferedReader(Paths.get(fileUrl.toURI()), StandardCharsets.UTF_8));
+
+            Invocable inv = (Invocable) engine;
+// call function from script file
+            inv.invokeFunction("test", email);
+
+            //pass info into session object, maybe the email and name as this can be used from the program.
+            // change login fb button to logout ?
+            //or should I just log them out of fb and change to login bar?
             //need to finish this off - this should remove login to fb button and add users name - this should also happen once logged in.
         }
 

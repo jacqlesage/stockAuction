@@ -1,7 +1,9 @@
 package model;
 
 import com.avaje.ebean.Model;
+import com.restfb.json.JsonArray;
 import controllers.routes;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import play.api.libs.json.Json;
 import play.mvc.Result;
@@ -9,6 +11,10 @@ import play.mvc.Result;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 import static play.mvc.Results.ok;
 import static play.mvc.Results.redirect;
@@ -48,7 +54,7 @@ public class CustomerLogin extends Model{
      */
     public static Result createLogin(String email, String password, Customer customer) {
 
-        if(CustomerLogin.find.where().eq("email",email).findUnique() != null) {//then email is alreay in system
+        if(CustomerLogin.find.where().eq("email",email).findUnique() != null) {//then email is already in system
             return redirect (controllers.routes.AsyncController.message());
         }else {
             //save the customer object to database
@@ -106,5 +112,53 @@ public class CustomerLogin extends Model{
         return cus;
     }
 
+    /**
+     * A method to build a customer login via facebook
+     *
+     * @param cus a cusrtomer object
+     */
+    public void saveCustomerViaFaceBook(Customer cus){
+
+
+    }
+
+    public Customer convertMapObj(Map values){
+        String email,fname,lname, temp, temp1;
+        JsonArray jsonArray = new JsonArray();
+        Set set=values.entrySet();
+        Iterator itr=set.iterator();
+
+
+        //to add to jsonArray so I can pull values out as a string.
+        while(itr.hasNext()){
+            Map.Entry entry =(Map.Entry)itr.next();
+            jsonArray.put(entry.getValue());
+            //System.out.println(entry.getKey() + " " + entry.getValue());
+            //System.out.println(jsonArray.toString());
+        }
+        //doing this to remove all the string noise.
+        temp = jsonArray.toString();
+        temp1 = temp.replace("[","");
+        temp1 = temp1.replace("]","");
+        temp1 = temp1.replaceAll("\"","");
+        String[]array = temp1.split(",");
+
+        email = array[0].toString();
+        fname = array[1].toString();
+        lname = array[2].toString();
+
+        Customer customer = new Customer(fname, lname, email);
+
+        return customer;
+    }
+
+    public String generateRandomPasswordForSocialMediaLogIn(){
+
+        String randomPassword = RandomStringUtils.randomAlphanumeric(10);
+
+
+
+        return randomPassword;
+    }
 
 }

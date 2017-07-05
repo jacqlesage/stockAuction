@@ -144,21 +144,7 @@ public class Customer extends Model{
 
     }
 
-    public void getAllCustomers2(){
 
-//        Finder<Integer, Customer> find = new Finder<Integer,Customer>(Customer.class);
-//        System.out.print("*&*&#$%^&*(((((*^&%$ " + find.toString());
-//
-//        return Ebean.json().toJson(find);
-
-    }
-
-    public void fbCustomerSignup(){
-
-
-
-
-    }
 
     @Override
     public String toString() {

@@ -4,17 +4,40 @@
 
 function checkLoginState() {
     FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
+       // statusChangeCallback(response);
 
     });
 
+
+
 }
 
+
 function faceBookLogin() {
-    alert("in post to fb")
-    FB.login(function () {
-        FB.api('/me/feed', 'post', {message: 'Hello, world!'});
-    }, {scope: 'publish_actions'});
+    alert("in post to fb");
+    FB.api('/me', {fields: 'email, first_name, last_name'}, function (response1) {
+
+        $.ajax({
+            url: "http://localhost:9000/saveFbInfo",
+            type: "POST",
+            datatype: "json",
+            data: response1,
+            success: function (d) {
+
+               // alert(d + "is winning" + " " + response1.toString());
+            },
+
+            error: function (e) {
+
+                alert(e + " is not winning");
+            }
+        });
+    // FB.login(function () {
+    //     FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+    // }, {scope: 'publish_actions'});
+
+        $("#test").html(response1.first_name);
+});
 }
 
 /** get name of user **/
@@ -22,8 +45,8 @@ function getFBName() {
     FB.api('/me', {fields: 'first_name,last_name'}, function (response) {
         console.log(response.first_name);
         console.log(response.last_name);
-        document.getElementById("fbFName").innerHTML = response.first_name;
-        document.getElementById("fbLName").innerHTML = response.last_name;
+        // document.getElementById("fbFName").innerHTML = response.first_name;
+        // document.getElementById("fbLName").innerHTML = response.last_name;
     })
 }
 
@@ -51,130 +74,34 @@ function logOutOfFb(){
 
    }
 
-function checkLoginState(){
 
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
+
+
+
+function fbUser() {
+    return FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
+
+          $.ajax({
+            url: "http://localhost:9000/saveFbInfo",
+            type: "POST",
+            datatype: "json",
+            data: response,
+            success: function (d) {
+
+                //alert(d + "is winning");
+            },
+
+            error: function (e) {
+
+                alert(e + " is not winning");
+            }
+        });
+
+        //callback(response);
+
 
     });
 
-
-
-}
-
-function statusChangeCallback(response) {
-    var infoFromUser = {};
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-        // Logged into your app and Facebook.
-        //testAPI();
-        //getInfoAboutMe();
-
-
-    //     infoFromUser = {info1 : FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
-    //        //document.getElementById("fbLoginInfo").innerHTML = response;
-    //        infoFromUser = getFBEmailAndName(response);
-    //        //infoFromUser = getFBEmailAndName("email");
-    //        console.log(infoFromUser.length + "facebook infog");
-    //    })
-    // };
-
-
-        someObj = getUserInfo();
-        var userInfo = {};
-        var keep;
-
-
-
-        function getUserInfo() {
-
-             userInfo = fbUser(function (model) {
-                 console.log(model);
-
-                 // $.ajax({
-                 //     url: "http://localhost:9000/saveFbInfo",
-                 //     type: "post",
-                 //     datatype: "json",
-                 //     data: model,
-                 //     success: function(d) {
-                 //         if(response == 'success')
-                 //             alert(model);
-                 //         else
-                 //             alert(d);
-                 //     }
-                 // });
-
-            });
-
-        }
-
-        function fbUser(callback) {
-             return FB.api('/me', {fields: 'email, first_name, last_name'}, function (response) {
-
-                 var x = JSON.stringify(response);
-                 console.log(x + "one");
-                 $.ajax({
-                         url: "http://localhost:9000/saveFbInfo",
-                         type: "POST",
-                         datatype: "json",
-                         data: x,
-                         success: function (d) {
-
-                             //alert(d + "is winning");
-                         },
-
-                         error: function (e) {
-
-                             alert(e + " is not winning");
-                         }
-                 });
-
-                callback(response);
-
-
-            });
-
-        }
-
-
-
-
-        // appRoutes.controllers.JavaApplicationDatabase.getAllUsers().ajax({
-        //    // url: 'http://localhost:9000/test',
-        //    //  type: 'get',
-        //    //  dataType: 'json',
-        //    //  success: function (data) {
-        //    //      //console.log(data.);
-        //    //      // var peopleList = $('#peopleList');
-        //    //      // $.each(data, function (index, value) {
-        //    //      //     //console.log(value.firstName);
-        //    //      //     //console.log(infoFromUser.length + "facebook info");
-        //    //      // })
-        //    //
-        //    //  }
-        // });
-
-
-    } else {
-        // The person is not logged into your app or we are unable to tell.
-        document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
-    }
-
-
-}
-
-function getFBEmailAndName(response){
-    var x = JSON.stringify(response);
-    var y = response.email;
-    var z = 1;
-
-    return [1];
 
 }
 

@@ -35,9 +35,9 @@
                                 version    : 'v2.9'
                             });
                             //FB.AppEvents.logPageView();
-                            FB.getLoginStatus(function(response) {
-                                statusChangeCallback(response);
-                            });
+//                            FB.getLoginStatus(function(response) {
+//                                statusChangeCallback(response);
+//                            });
                         };
 
                         (function(d, s, id){
@@ -56,7 +56,7 @@
                         <a href="index.html" class="logo"><strong>Projection</strong> by TEMPLATED</a>
                         <nav id="nav">
                             <a href="index.html">Home</a>
-                            <a class="fb-login-button" scope="public_profile,email" onlogin="checkLoginState();" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></a>
+                            <a class="fb-login-button" scope="public_profile,email" onlogin="faceBookLogin();" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></a>
 
                             <div class="dropdown nav pull-right">
 
@@ -116,13 +116,15 @@
                             <div>
                                 <span class="icon fa-bug"></span>
                                 <h3>Ultrices</h3>
-                                <p>Nulla vitae mauris non felis</p>
+                                <p id="test"></p>
                             </div>
 
                         </div>
 
                         <footer>
-                            <a href="#" class="button">Get Started</a>
+                            @if(!session().isEmpty()) {
+                                <a href="#" class="button">Go to auction</a>
+                            }
                         </footer>
                     </div>
                 </section>
