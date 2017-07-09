@@ -174,29 +174,37 @@ public class JavaApplicationDatabase extends Controller {
 
         cus = customerLogin.convertMapObj(values);
         email = cus.email;
-        if(customerLogin.findCustomer(email)== null){
-            //customer not signed up with us before
-            //save email
-            //what do I do about password? generate random one
+        if(customerLogin.findCustomer(email)== null){//customer not signed up with us before
+               //what do I do about password? generate random one
             password = customerLogin.generateRandomPasswordForSocialMediaLogIn();
             System.out.print("***************** " + password);
             customerLogin.createLogin(email, password, cus);
 
+            //will need to create some sort of email verification and email of password
+
         }else{
-            System.out.print("%%%%%%%%%%%%%% big tester");
+            //Ok need to do a pop up saying you need to enter your password as you already have an account with us.
+            Session session = null;
+            session("email", email);
+            session("firstName", cus.firstName);
+            session("lastName", cus.lastName);
 
-            //ok if they already have logged in with FB - we need to point them back into the login page with there username filled out (email address)
-            //and ask them for their password. The login with FB is only for use to "speed up the account information collection"
-            ScriptEngineManager manager = new ScriptEngineManager();
-            ScriptEngine engine = manager.getEngineByName("JavaScript");
-// read script file
-            URL fileUrl = getClass().getResource("/public/javascripts/webworker.js");
-
-            engine.eval(Files.newBufferedReader(Paths.get(fileUrl.toURI()), StandardCharsets.UTF_8));
-
-            Invocable inv = (Invocable) engine;
-// call function from script file
-            inv.invokeFunction("test", email);
+            //session("id", Integer.toString(customerSession.id));
+//            System.out.print("%%%%%%%%%%%%%% big tester");
+//
+//            //ok if they already have logged in with FB - we need to point them back into the login page with there username filled out (email address)
+//            //and ask them for their password. The login with FB is only for use to "speed up the account information collection"
+//            ScriptEngineManager manager = new ScriptEngineManager();
+//            ScriptEngine engine = manager.getEngineByName("JavaScript");
+//// read script file
+//            URL fileUrl = getClass().getResource("/public/javascripts/webworker.js");
+//
+//            engine.eval(Files.newBufferedReader(Paths.get(fileUrl.toURI()), StandardCharsets.UTF_8));
+//
+//            Invocable inv = (Invocable) engine;
+//// call function from script file
+//            inv.invokeFunction("test", email);
+            return (ok());
 
             //pass info into session object, maybe the email and name as this can be used from the program.
             // change login fb button to logout ?
@@ -204,7 +212,7 @@ public class JavaApplicationDatabase extends Controller {
             //need to finish this off - this should remove login to fb button and add users name - this should also happen once logged in.
         }
 
-        return ok(values.keySet() + "in here");
+        return ok();
     }
 
     /**
